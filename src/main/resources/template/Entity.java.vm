@@ -1,0 +1,36 @@
+package ${package}.entity;
+
+    #if(${hasBigDecimal})
+    import java.math.BigDecimal;
+    #end
+import java.util.Date;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import com.baomidou.mybatisplus.annotation.*;
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName("${tableName}")
+public class ${className}Entity extends BaseEntity {
+
+    #foreach ($column in $columns)
+        /**
+         * $column.comments
+         */
+        #if($column.columnName == $pk.columnName)
+        @TableId(type = IdType.AUTO)
+        #end
+    private $column.attrType $column.attrname;
+    #end
+}

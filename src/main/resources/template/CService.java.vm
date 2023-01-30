@@ -1,0 +1,114 @@
+package ${mainPath}.emadmin.service;
+
+import ${mainPath}.embase.entity.${className}Entity;
+import ${mainPath}.embase.common.request.IPage;
+import ${mainPath}.embase.common.response.R;
+import ${mainPath}.emadmin.feign.${className}Feign;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.stereotype.Service;
+
+
+/**
+ * ${comments}应用服务层
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Service
+public class ${className}Service {
+
+    @Autowired
+    private ${className}Feign ${classname}Feign;
+
+    /**
+     * 查询 分页数据
+     *
+     * @param
+     */
+    public R page(Map<String, Object> params) {
+        IPage<${className}Entity> page = ${classname}Feign.page(params);
+        return R.ok(page);
+    }
+
+    /**
+     * 根据表格字段查询列表
+     */
+    public R listByMap(Map<String, Object> params) {
+        List<${className}Entity> list = ${classname}Feign.listByMap(params);
+        return R.ok(list);
+    }
+
+    /**
+     * 查询 列表数据
+     *
+     * @param
+     */
+    public R list(Map<String, Object> params) {
+        List<${className}Entity> list = ${classname}Feign.list(params);
+        return R.ok(list);
+    }
+
+    /**
+     * 保存
+     */
+    public R save(@RequestBody ${className}Entity ${classname}) {
+            ${classname}Feign.save(${classname});
+        return R.ok();
+    }
+
+    /**
+     * 批量保存
+     * @return
+     */
+    public R saveBatch(@RequestBody List<${className}Entity> ${className}List) {
+            ${classname}Feign.saveBatch(${className}List);
+        return R.ok();
+    }
+
+    /**
+     * 更新
+     * @return
+     */
+    public R update(@RequestBody ${className}Entity ${classname}) {
+            ${classname}Feign.update(${classname});
+        return R.ok();
+    }
+
+    /**
+     * 单个逻辑删除
+     * @param id
+     * @return
+     */
+    public R delete(Long id) {
+            ${classname}Feign.delete(id);
+        return R.ok();
+    }
+
+    /**
+     * 批量逻辑删除
+     * @return
+     */
+    public R deleteBatch(Long[] ids) {
+            ${classname}Feign.deleteBatch(ids);
+        return R.ok();
+    }
+
+    /**
+    * 查询详情
+    * @return
+    */
+    public R info(@RequestParam(name = "id") Long id) {
+            ${className}Entity ${classname} = ${classname}Feign.info(id);
+        return R.ok(${classname});
+    }
+
+}
+
+
+

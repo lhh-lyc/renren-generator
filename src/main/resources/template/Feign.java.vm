@@ -1,0 +1,90 @@
+package ${mainPath}.emadmin.service;
+
+import ${mainPath}.embase.entity.${className}Entity;
+import java.util.Map;
+
+import ${mainPath}.embase.common.request.IPage;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
+/**
+ * ${comments}服务层
+ *
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+@FeignClient(name = "emcommon")
+public interface ${className}Feign {
+
+    /**
+     * 查询 分页数据
+     *
+     * @param
+     */
+    @GetMapping("${pathName}/page")
+    IPage<${className}Entity> page(@RequestParam Map<String, Object> params);
+
+    /**
+     * 根据表格字段查询列表
+     */
+    @GetMapping("${pathName}/listByMap")
+    List<${className}Entity> listByMap(@RequestParam Map<String, Object> params);
+
+
+    /**
+     * 查询 列表数据
+     *
+     * @param
+     */
+    @GetMapping("${pathName}/list")
+    List<${className}Entity> list(@RequestParam Map<String, Object> params);
+
+    /**
+     * 保存
+     */
+    @PostMapping("${pathName}/save")
+    void save(@RequestBody ${className}Entity ${classname});
+
+    /**
+     * 批量保存
+     * @return
+     */
+    @PostMapping("${pathName}/saveBatch")
+    void saveBatch(@RequestBody List<${className}Entity> ${className}List);
+
+    /**
+     * 更新
+     * @return
+     */
+    @PostMapping("${pathName}/update")
+    void update(@RequestBody ${className}Entity ${classname});
+
+    /**
+     * 单个逻辑删除
+     * @param id
+     * @return
+     */
+    @PostMapping("${pathName}/delete")
+    void delete(Long id);
+
+    /**
+     * 批量逻辑删除
+     * @return
+     */
+    @PostMapping("${pathName}/deleteBatch")
+    void deleteBatch(@RequestBody Long[] ids);
+
+
+    @GetMapping("${pathName}/info")
+        ${className}Entity info(@RequestParam(name = "id") Long id);
+
+}
+
+

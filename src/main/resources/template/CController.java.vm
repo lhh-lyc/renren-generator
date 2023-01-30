@@ -1,0 +1,117 @@
+package ${mainPath}.emadmin.controller;
+
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import ${mainPath}.embase.common.response.R;
+
+import java.util.List;
+import java.util.Map;
+
+import ${mainPath}.embase.entity.${className}Entity;
+import ${mainPath}.emadmin.service.${className}Service;
+
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@RestController
+@RequestMapping("${pathName}")
+public class ${className}Controller {
+    @Autowired
+    private ${className}Service ${classname}Service;
+
+    /**
+     * 分页查询列表
+     */
+    @GetMapping("/page")
+    @ApiOperation(value = "分页查询列表")
+    public R page(@RequestParam Map<String, Object> params) {
+        return ${classname}Service.page(params);
+    }
+
+    /**
+     * 根据条件查询列表数据
+     */
+    @GetMapping("list")
+    @ApiOperation(value = "根据条件查询列表数据")
+    public R list(@RequestParam Map<String, Object> params) {
+        return ${classname}Service.list(params);
+    }
+
+    /**
+     * 根据表格字段查询列表
+     */
+    @GetMapping("/listByMap")
+    @ApiOperation(value = "根据表格字段查询列表")
+    public R listM(@RequestParam Map<String, Object> params) {
+        return ${classname}Service.listByMap(params);
+    }
+
+    /**
+     * 保存
+     * @return
+     */
+    @PostMapping("save")
+    @ApiOperation(value = "保存")
+    public R save(@RequestBody ${className}Entity ${classname}) {
+        return ${classname}Service.save(${classname});
+    }
+
+    /**
+     * 批量保存
+     * @return
+     */
+    @PostMapping("saveBatch")
+    @ApiOperation(value = "批量保存")
+    public R save(@RequestBody List<${className}Entity> ${classname}List) {
+        return ${classname}Service.saveBatch(${classname}List);
+    }
+
+    /**
+    * 更新
+    * @return
+    */
+    @PostMapping("update")
+    @ApiOperation(value = "更新")
+    public R update(@RequestBody ${className}Entity ${classname}) {
+        return ${classname}Service.update(${classname});
+    }
+
+    /**
+     * 单个删除
+     * @param id
+     * @return
+     */
+    @PostMapping("delete")
+    @ApiOperation(value = "单个删除")
+    public R delete(Long id) {
+        return ${classname}Service.delete(id);
+    }
+
+    /**
+     * 批量删除
+     * @return
+     */
+    @PostMapping("deleteBatch")
+    @ApiOperation(value = "批量删除")
+    public R deleteBatch(@RequestBody Long[] ids) {
+        return ${classname}Service.deleteBatch(ids);
+    }
+
+    /**
+    * 详情
+    * @param id
+    * @return
+    */
+    @GetMapping("info")
+    @ApiOperation(value = "详情")
+    public R getInfo(Long id) {
+        return ${classname}Service.info(id);
+    }
+
+}

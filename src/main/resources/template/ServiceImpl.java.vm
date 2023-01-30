@@ -1,0 +1,45 @@
+package ${package}.service.impl;
+
+import ${package}.dao.${className}Dao;
+import ${package}.entity.${className}Entity;
+import ${package}.service.${className}Service;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import ${mainPath}.embase.common.request.PageUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
+
+
+@Service("${classname}Service")
+public class ${className}ServiceImpl extends ServiceImpl<${className}Dao, ${className}Entity> implements ${className}Service {
+
+    @Autowired
+    private ${className}Dao ${classname}Dao;
+
+    /**
+     * 分页查询列表数据
+     * @param params
+     * @return
+     */
+    @Override
+    public IPage<${className}Entity> page(Map<String, Object> params) {
+        Page<${className}Entity> page = PageUtil.getPageParam(params);
+        return ${classname}Dao.queryPage(page, params);
+    }
+
+    /**
+     * 查询列表数据
+     * @param params
+     * @return
+     */
+    @Override
+    public List<${className}Entity> list(Map<String, Object> params) {
+        List<${className}Entity> list = ${classname}Dao.queryList(params);
+        return list;
+    }
+
+}

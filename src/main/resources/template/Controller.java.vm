@@ -1,0 +1,121 @@
+package ${package}.controller;
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import ${package}.entity.${className}Entity;
+import ${package}.service.${className}Service;
+import ${package}.response.R;
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@RestController
+@RequestMapping("${pathName}")
+public class ${className}Controller {
+    @Autowired
+    private ${className}Service ${classname}Service;
+
+    /**
+     * 保存
+     * @return
+     */
+    @PostMapping("save")
+    @ApiOperation(value = "保存")
+    public void save(@RequestBody ${className}Entity ${classname}) {
+            ${classname}Service.save(${classname});
+    }
+
+    /**
+     * 批量保存
+     * @return
+     */
+    @PostMapping("saveBatch")
+    @ApiOperation(value = "批量保存")
+    public void save(@RequestBody List<${className}Entity> ${classname}List) {
+            ${classname}Service.saveBatch(${classname}List);
+    }
+
+    /**
+    * 更新
+    * @return
+    */
+    @PostMapping("update")
+    @ApiOperation(value = "更新")
+    public void update(@RequestBody ${className}Entity ${classname}) {
+            ${classname}Service.updateById(${classname});
+    }
+
+    /**
+     * 单个删除
+     * @param id
+     * @return
+     */
+    @PostMapping("delete")
+    @ApiOperation(value = "单个删除")
+    public void delete(Long id) {
+        if (id != null) {
+                ${classname}Service.removeById(id);
+        }
+    }
+
+    /**
+     * 批量删除
+     * @return
+     */
+    @PostMapping("deleteBatch")
+    @ApiOperation(value = "批量删除")
+    public void deleteBatch(@RequestBody Long[] ids) {
+        List<Long> idList = Arrays.asList(ids);
+            ${classname}Service.removeByIds(idList);
+    }
+
+    /**
+     * 根据表格字段查询列表
+     */
+    @GetMapping("/listByMap")
+    @ApiOperation(value = "根据表格字段查询列表")
+    public List<${className}Entity> listByMap(@RequestParam Map<String, Object> params) {
+        List<${className}Entity> ${classname}List = (List<${className}Entity>) ${classname}Service.listByMap(params);
+        return ${classname}List;
+    }
+
+    /**
+     * 分页查询列表
+     */
+    @GetMapping("/page")
+    @ApiOperation(value = "分页查询列表")
+    public IPage<${className}Entity> page(@RequestParam Map<String, Object> params) {
+        IPage<${className}Entity> page = ${classname}Service.page(params);
+        return page;
+    }
+
+    /**
+     * 根据条件查询列表数据
+     */
+    @GetMapping("list")
+    @ApiOperation(value = "根据条件查询列表数据")
+    public List<${className}Entity> list(@RequestParam Map<String, Object> params) {
+        List<${className}Entity> ${classname}List = ${classname}Service.list(params);
+        return ${classname}List;
+    }
+
+    @GetMapping("info")
+    @ApiOperation(value = "详情")
+    public ${className}Entity getInfo(Long id) {
+            ${className}Entity ${classname} = ${classname}Service.getById(id);
+        return ${classname};
+    }
+
+}
+
