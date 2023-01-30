@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ${mainPath}.embase.common.request.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ${package}.utils.Query;
 
 import java.util.List;
 import java.util.Map;
@@ -27,8 +28,11 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Dao, ${clas
      */
     @Override
     public IPage<${className}Entity> page(Map<String, Object> params) {
-        Page<${className}Entity> page = PageUtil.getPageParam(params);
-        return ${classname}Dao.queryPage(page, params);
+        IPage<${className}Entity> page = this.page(
+                new Query<${className}Entity>().getPage(params),
+                new QueryWrapper<${className}Entity>()
+        );
+        return page;
     }
 
     /**
@@ -38,7 +42,8 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Dao, ${clas
      */
     @Override
     public List<${className}Entity> list(Map<String, Object> params) {
-        List<${className}Entity> list = ${classname}Dao.queryList(params);
+        QueryWrapper wrapper = Wrappers.query();
+        List<${className}Entity> list = list(wrapper);
         return list;
     }
 
